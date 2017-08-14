@@ -8,6 +8,7 @@ gem 'puma'
 gem 'rails', '5.1.3'
 gem 'redis'
 
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
@@ -17,7 +18,8 @@ gem 'simple_form'
 gem 'uglifier'
 
 group :development, :test do
-
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'web-console', '>= 3.3.0'
