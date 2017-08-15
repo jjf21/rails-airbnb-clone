@@ -1,0 +1,14 @@
+<h1><%= @product.first_name %> <%= @product.last_name %></h1>
+<p><%= @product.description %></p>
+<%= link_to 'Modifier', edit_product_path %> / 
+<%= link_to 'Retour sur la liste', products_path %> / 
+<%= link_to 'Supprimer', product_path, method: :delete%> /
+<h2>Add a reservation</h2>
+<%= simple_form_for [@product, @booking] do |f|%>
+  <%= f.input :description %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
+  <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
+  <%= f.submit %><br>
+<% end %> 
