@@ -1,7 +1,8 @@
+
 <h1> Liste des produits </h1> - <%= link_to 'Ajouter un produit', new_product_path %>
 <br>
 <% @products.each do |product| %>
-  <h2><%= link_to product.first_name, product_path(product) %></h2>
-  <p><%= product.description %></p>
-  <br>
+
+  <%= render 'shared/card', product: product %>
+
 <% end %>
