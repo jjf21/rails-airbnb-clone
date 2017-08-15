@@ -17,8 +17,9 @@ puts 'Erasing all the DB'
 puts 'Seeding your app'
 
 Booking.delete_all
-User.delete_all
 Product.delete_all
+User.delete_all
+
 
 10.times do
 
@@ -47,7 +48,8 @@ Product.delete_all
                    weight: 50,
                    height: 1.88,
                    shoes: 39,
-                   description: Faker::Lorem.paragraph
+                   description: Faker::Lorem.paragraph,
+                   remote_photo_url: 'http://www.potins.net/wp-content/uploads/2014/03/1395241184-d0c1b1c9d4fc5b8b3818af35adfaadbb.jpg'
                    )
 
     a.save!
