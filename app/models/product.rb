@@ -5,4 +5,5 @@ class Product < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :price, presence: true
+  validates :user, presence: true
 end
