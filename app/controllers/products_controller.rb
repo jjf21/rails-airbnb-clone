@@ -57,7 +57,9 @@ class ProductsController < ApplicationController
                                     :weight,
                                     :shoes,
                                     :eyes,
-                                    :hair
+                                    :hair,
+                                    :photo,
+                                    :photo_cache
                                     )
   end
 
