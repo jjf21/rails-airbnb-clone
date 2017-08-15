@@ -1,3 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class='col-xs-12 col-md-3 product-sidebar card'>
+        <%= cl_image_tag @product.photo, class:'product-image'  %>
+        <a href='#'><div class='ancre-menu'>Description</div></a>
+        <a href='#'><div class='ancre-menu'>Photos</div></a>
+        <a href='#'><div class='ancre-menu'>Reviews</div></a>
+        <a href='#'><div class='ancre-menu'>Maps</div></a>
+    </div>
+    <div class='col-xs-12 col-md-6'>
+      <div class='card'>
+        <div class='card-title'>Description</div>
+        <p> <%= @product.description %> </p>
+        <div class='social-info'>
+          <div class='social-info-elm'>Taille<br><span class='lg'><%= @product.height %></span></div>
+          <div class='social-info-elm'>Poids<br><span class='lg'><%= @product.weight %></span></div>
+          <div class='social-info-elm'>Age<br><span class='lg'><%= @product.age %></span></div>
+          <div class='social-info-elm'>Yeux<br><span class='lg'><%= @product.eyes.capitalize %></span></div>
+          <div class='social-info-elm'>Cheveux<br><span class='lg'><%= @product.hair.capitalize %></span></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-xs-12 col-md-3'>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <h1><%= @product.first_name %> <%= @product.last_name %></h1>
 <%= image_tag @product.photo %>
 <p><%= @product.description %></p>

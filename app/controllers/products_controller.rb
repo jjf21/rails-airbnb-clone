@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only:[:edit, :show, :update, :destroy]
   skip_before_action :authenticate_user!, only: :index
+  require 'Date'
 
   def show
     @booking = @product.bookings.new
