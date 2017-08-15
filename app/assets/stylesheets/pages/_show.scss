@@ -11,6 +11,16 @@
   border-radius: 4px;                    
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top:20px;
+}
+
+.sticky-content{
+  text-align:center;
+  margin-bottom: 20px;                             
+  border-radius: 4px;                    
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top:20px;
 }
 
 .product-sidebar{
@@ -41,7 +51,7 @@ a:hover{
   text-decoration:none;
 }
 
-.card > .card-title{
+.card-title{
   border-bottom: 1px solid darkgrey;
   text-align: left;
   line-height: 40px;
@@ -80,5 +90,33 @@ a:hover{
   border-right: none;
 }
 
+.sticky-content > .form-group{
+  margin: 0;
+  line-height: 33px;
+}
 
+.book-btn{
+  margin-top:20px;
+}
 
+#details{
+  margin-bottom: 20px;
+}
+
+.no-padding{
+  padding:0;
+}
+
+//SWIPEBOX PICTURES
+#box-container{
+  padding-left:0;
+}
+
+#box-container > li{
+  list-style: none;
+  display: inline;
+}
+
+#box-container > li > a > img{
+  width:32.8%;
+}
