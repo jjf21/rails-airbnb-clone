@@ -3,11 +3,9 @@
 
 
 .user-image {
-  background: url('https://dl.dropboxusercontent.com/s/qxmegzcf52nv2mt/person-woman-coffee-cup.jpg');
-  background-size: cover;
+  background-size: cover !important;
   height: 70%;
-  background-position: right;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat !important;
   position: relative;
 }
 
