@@ -9,6 +9,10 @@ class Product < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   require 'Date'
 
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   def age
     return (Date.today - date_of_birth).to_i / 365
   end
