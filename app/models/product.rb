@@ -8,8 +8,9 @@ class Product < ApplicationRecord
   validates :user, presence: true
   mount_uploader :photo, PhotoUploader
   require 'date'
+
   has_many :products_skills, dependent: :destroy
-  has_many :skills, through: :products_skill
+  has_many :skills, through: :products_skills
 
 
   geocoded_by :address
