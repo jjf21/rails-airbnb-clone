@@ -1,14 +1,31 @@
 class ProductsController < ApplicationController
   before_action :set_product, only:[:edit, :show, :update, :destroy]
   skip_before_action :authenticate_user!, only: :index
-  require 'Date'
-
+  
   def show
     @booking = @product.bookings.new
+    @marker_hash = Gmaps4rails.build_markers(@product) do |product, marker|
+      marker.lat product.lat
+      marker.lng product.lng
+    end
   end
 
   def index
-    @products = Product.all
+
+    lat = params[:lat]
+    lng = params[:lng]
+
+    if lat.blank? || lng.blank?
+      @products = Product.where.not(lat: nil, lng: nil)
+    else
+      @products = Product.near([lat, lng], 20)
+    end
+
+    @markers_hash = Gmaps4rails.build_markers(@products) do |product, marker|
+      marker.lat product.lat
+      marker.lng product.lng
+    end
+
   end
 
   def new
@@ -45,9 +62,9 @@ class ProductsController < ApplicationController
                                     :description,
                                     :first_name,
                                     :last_name,
-                                    :user, 
-                                    :date_of_birth, 
-                                    :price, 
+                                    :user,
+                                    :date_of_birth,
+                                    :price,
                                     :phone_number,
                                     :address,
                                     :city,

@@ -1,8 +1,183 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6" >
+      <div class='selector'>
+        <form class="form-inline" method='get' action='/'>
+              <select class="form-control">
+                <option selected>Ou ?</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <select class="form-control">
+                <option selected>Quel Prix ?</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
 
-<h1> Liste des produits </h1> - <%= link_to 'Ajouter un produit', new_product_path %>
-<br>
-<% @products.each do |product| %>
+              <select class="form-control" name='speciality'>
+                <option selected>Spécialité ?</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
 
-  <%= render 'shared/card', product: product %>
+          <button type="submit" class="btn btn-danger">Rechercher</button>
+        </form>
 
-<% end %>
+      </div>
+      <div class='row'>
+        <% @products.each do |product| %>
+          <div class="col-xs-12 col-sm-6">
+            <%= render 'shared/card', product: product %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class='sticky-content'>
+
+        <div class="col-md-6">
+            <div id="map" style="width: 100%; height: 600px;"></div>
+          </div>
+        </div>
+        <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+
+            var styles = [
+            {
+                "featureType": "water",
+                "stylers": [
+                    {
+                        "saturation": 43
+                    },
+                    {
+                        "lightness": -11
+                    },
+                    {
+                        "hue": "#0088ff"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "hue": "#ff0000"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 99
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#808080"
+                    },
+                    {
+                        "lightness": 54
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ece2d9"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ccdca1"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#767676"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.natural",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#EBE5E0"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.sports_complex",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            }
+        ];
+
+            $(document).ready(function() {
+              var handler = Gmaps.build('Google');
+              handler.buildMap({ internal: { id: 'map' }, provider: {styles: styles }}, function() {
+                markers = handler.addMarkers(<%= raw @markers_hash.to_json %>);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                if (markers.length == 0) {
+                  handler.getMap().setZoom(2);
+                } else if (markers.length == 1) {
+                  handler.getMap().setZoom(14);
+                }
+              });
+            });
+          <% end %>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
