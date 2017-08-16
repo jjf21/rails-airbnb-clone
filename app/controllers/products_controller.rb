@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only:[:edit, :show, :update, :destroy]
   skip_before_action :authenticate_user!, only: :index
-  require 'Date'
-
+  
   def show
     @booking = @product.bookings.new
     @marker_hash = Gmaps4rails.build_markers(@product) do |product, marker|
@@ -12,6 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def index
+
     lat = params[:lat]
     lng = params[:lng]
 
@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
       marker.lat product.lat
       marker.lng product.lng
     end
+
   end
 
   def new

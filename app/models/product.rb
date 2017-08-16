@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :user, presence: true
   mount_uploader :photo, PhotoUploader
-  require 'Date'
+  require 'date'
 
 
   geocoded_by :address
