@@ -67,23 +67,23 @@
   font-size: 1.8rem;
 }
 
-.social-info-elm {
+.social-info-elm-card {
   color: #999;
   border-right: 1px solid #eee;
-  width: 33.3333%;
+  width: 33%;
   text-align: center;
   font-weight: 300;
 }
 
-.social-info-elm:last-child {
+.social-info-elm-card:last-child {
   border-right: none;
 }
 
 .card-wrapper {
   position: relative;
-  width: 400px;
   height: 500px;
   font-family: work sans;
+  margin-bottom:30px;
 }
 
 .main-window {

@@ -1,8 +1,43 @@
 
-<h1> Liste des produits </h1> - <%= link_to 'Ajouter un produit', new_product_path %>
-<br>
-<% @products.each do |product| %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6" >
+      <div class='selector'>
+        <form class="form-inline" method='get' action='/'>
+              <select class="form-control">
+                <option selected>Ou ?</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <select class="form-control">
+                <option selected>Quel Prix ?</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
 
-  <%= render 'shared/card', product: product %>
+              <select class="form-control" name='speciality'>
+                <option selected>Spécialité ?</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
 
-<% end %>
+          <button type="submit" class="btn btn-danger">Rechercher</button>
+        </form>
+
+      </div>
+      <div class='row'>
+        <% @products.each do |product| %>
+          <%= render 'shared/card', product: product %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class='sticky-content'>
+        MAP
+      </div>
+    </div>
+  </div>
+</div>
