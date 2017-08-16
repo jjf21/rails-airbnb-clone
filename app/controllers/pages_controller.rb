@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
   def home
     @products = Product.first(4)
     content = 'Lots of people are unaware of the fact that adult acne exists and they seem not to know how to treat adult acne.'

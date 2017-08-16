@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only:[:edit, :show, :update, :destroy]
-  skip_before_action :authenticate_user!, only: :index
-  
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def show
     @booking = @product.bookings.new
     @marker_hash = Gmaps4rails.build_markers(@product) do |product, marker|
@@ -16,14 +16,14 @@ class ProductsController < ApplicationController
     lng = params[:lng]
 
     if lat.blank? || lng.blank?
-      @products = Product.where.not(lat: nil, lng: nil)
+      @products = Product.where.not(latitude: nil, longitude: nil)
     else
       @products = Product.near([lat, lng], 20)
     end
 
     @markers_hash = Gmaps4rails.build_markers(@products) do |product, marker|
-      marker.lat product.lat
-      marker.lng product.lng
+      marker.lat product.latitude
+      marker.lng product.longitude
     end
 
   end
@@ -77,7 +77,9 @@ class ProductsController < ApplicationController
                                     :eyes,
                                     :hair,
                                     :photo,
-                                    :photo_cache
+                                    :photo_cache,
+                                    :latitude,
+                                    :longitude
                                     )
   end
 
