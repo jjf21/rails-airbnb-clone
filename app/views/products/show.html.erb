@@ -54,7 +54,7 @@
 
       <div class='card'>
         <div class='card-title'>Localisation</div>
-        <p> <%= @product.description %> </p>
+        <%= render "products/map_box", marker_hash: @marker_hash %>
       </div>
     </div>
 
@@ -70,7 +70,7 @@
           <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
           <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
           <%= f.submit %><br>
-        <% end %> 
+        <% end %>
 
         <div class="form-group">
           <label for="details">Sujet de la reservation</label>
