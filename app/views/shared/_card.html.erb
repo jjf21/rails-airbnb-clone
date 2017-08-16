@@ -1,8 +1,10 @@
-<div class='container' id='container'>
+
+<div class="col-xs-12 col-sm-6">
+
   <div class='card-wrapper'>
     <div class='main-window' id='main-window'>
       <%= link_to product_path(product) do %>
-        <div class='user-image' style='background: url(<%= cl_image_path product.photo.url(:thumbnail)%>);'>
+        <div class='user-image' style='background: url(<%= cl_image_path product.photo%>);'>
           <div class='username'><%= "#{product.first_name} #{product.last_name}" %></div>
           <div class='price username'><%= "#{product.price} €" %></div>
         </div>
@@ -15,9 +17,9 @@
       </div>
 
       <div class='social-info'>
-        <div class='social-info-elm'>Taille<br><span class='lg'><%= product.height %></span></div>
-        <div class='social-info-elm'>Poids<br><span class='lg'><%= product.weight %></span></div>
-        <div class='social-info-elm'>Ville<br><span class='lg'><%= product.city.first(10) %></span></div>
+        <div class='social-info-elm-card'>Taille<br><span class='lg'><%= product.height %></span></div>
+        <div class='social-info-elm-card'>Poids<br><span class='lg'><%= product.weight %></span></div>
+        <div class='social-info-elm-card'>Ville<br><span class='lg' style='<%= 'font-size:13px' if  product.city.length> 7 %>'><%= product.city.first(7) %></span></div>
       </div>
     </div>
   </div>

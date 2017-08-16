@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    speciality = params[:speciality]
+    address = params[:address]
+    price = params[:price]
   end
 
   def new
