@@ -1,1 +1,19 @@
 // Specific CSS for your home-page
+.section-title{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.section-title > a{
+  color: $red;
+}
+
+section{
+  margin:3em 0;
+}
+
+img.support-img{
+  max-width: 300px;
+  max-height: 100px;
+}
