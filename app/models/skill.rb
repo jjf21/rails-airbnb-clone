@@ -1,3 +1,3 @@
 class Skill < ApplicationRecord
-  has_many :product
+  has_many :products_skills
 end

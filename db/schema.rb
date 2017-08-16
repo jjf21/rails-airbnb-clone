@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170816124631) do
-=======
-ActiveRecord::Schema.define(version: 20170816084711) do
->>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,12 +55,12 @@ ActiveRecord::Schema.define(version: 20170816084711) do
   end
 
   create_table "products_skills", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "product_id"
     t.bigint "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_products_skills_on_product_id"
     t.index ["skill_id"], name: "index_products_skills_on_skill_id"
-    t.index ["user_id"], name: "index_products_skills_on_user_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -96,6 +92,6 @@ ActiveRecord::Schema.define(version: 20170816084711) do
   add_foreign_key "bookings", "products"
   add_foreign_key "bookings", "users"
   add_foreign_key "products", "users"
+  add_foreign_key "products_skills", "products"
   add_foreign_key "products_skills", "skills"
-  add_foreign_key "products_skills", "users"
 end
