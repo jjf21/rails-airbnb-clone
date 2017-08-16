@@ -1,1 +1,49 @@
 <%= render 'shared/banner' %>
+<div class='container'>
+
+  <section>
+    <div class='section-title'>
+      <h3>Nos Services</h3>
+    </div>
+    <div class='row'>
+      <% @services.each do |service| %>
+        <div class='col-md-3'>
+          <%= render 'shared/service', service: service%>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+
+
+  <section>
+    <div class='section-title'>
+      <h3>Une selection de nos modèles</h3>
+      <%= link_to 'Tous nos modèles >', products_path %>
+    </div>
+    <div class='row'>
+          <% @products.each do |product| %>
+            <div class="col-xs-12 col-sm-3">
+              <%= render 'shared/card', product: product %>
+            </div>
+          <% end %>
+    </div>
+  </section>
+
+  <section>
+    <div class='section-title'>
+      <h3>Nos Partenaires</h3>
+    </div>
+    <div class='row text-center'>
+      <div class='col-md-4'>
+        <%= image_tag 'wagon.png', class:'support-img' %>
+      </div>
+      <div class='col-md-4'>
+        <%= image_tag 'stiff.png', class:'support-img' %>
+      </div>
+      <div class='col-md-4'>
+        <%= image_tag 'cook.png', class:'support-img' %>
+      </div>
+    </div>
+  </section>
+</div>

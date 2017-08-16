@@ -30,7 +30,9 @@
       </div>
       <div class='row'>
         <% @products.each do |product| %>
-          <%= render 'shared/card', product: product %>
+          <div class="col-xs-12 col-sm-6">
+            <%= render 'shared/card', product: product %>
+          </div>
         <% end %>
       </div>
     </div>
