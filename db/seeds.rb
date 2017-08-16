@@ -17,12 +17,26 @@ puts 'Erasing all the DB'
 puts 'Seeding your app'
 
 Booking.delete_all
+ProductsSkill.delete_all
+Skill.delete_all
 Product.delete_all
 User.delete_all
+Skill.delete_all
 
 
-10.times do
 
+  Skill.create!(name:'caractère')
+  Skill.create!(name:'laid')
+  Skill.create!(name:'senior')
+  Skill.create!(name:'detail')
+  Skill.create!(name:'grande taille')
+  Skill.create!(name:'petite')
+  Skill.create!(name:'beauté')
+  Skill.create!(name:'haute couture')
+
+
+
+6.times do
   a = User.new(
               first_name: (Faker::Name.first_name),
               last_name: (Faker::Name.last_name),
@@ -32,7 +46,7 @@ User.delete_all
               )
 
   (1..3).to_a.sample.times do
-    a.products.new(
+    b = a.products.new(
                    first_name: (Faker::Cat.name),
                    last_name: (Faker::Name.last_name),
                    date_of_birth: Faker::Date.birthday(18, 33),
@@ -54,7 +68,9 @@ User.delete_all
                    remote_photo_url: 'http://www.potins.net/wp-content/uploads/2014/03/1395241184-d0c1b1c9d4fc5b8b3818af35adfaadbb.jpg'
                    )
 
-    a.save!
+    b.products_skills.new(skill_id: Skill.all.sample.id)
+
+    b.save!
   end
 
   a = User.new(
@@ -77,6 +93,21 @@ User.delete_all
   a.save!
 
 end
+
+User.create!(
+              first_name: 'Carl',
+              last_name: 'Job',
+              email: 'carl.quivron@gmail.com',
+              password: 'bestxx',
+              password_confirmation: 'bestxx'
+              )
+User.create!(
+              first_name: 'Augustin',
+              last_name: 'Poupard',
+              email: 'augustin.poupard@gmail.com',
+              password: 'hardelot',
+              password_confirmation: 'hardelot'
+              )
 
 puts 'Seed Completed'
 
