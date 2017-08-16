@@ -7,4 +7,9 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :user, presence: true
   mount_uploader :photo, PhotoUploader
+  require 'Date'
+
+  def age
+    return (Date.today - date_of_birth).to_i / 365
+  end
 end
