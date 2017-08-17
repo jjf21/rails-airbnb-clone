@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :products_bookings, through: :products, source: :bookings, dependent: :destroy
+  has_many :reviews
   mount_uploader :avatar, PhotoUploader
 end
