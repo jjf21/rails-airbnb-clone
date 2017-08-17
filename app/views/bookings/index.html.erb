@@ -23,7 +23,7 @@
             <td><%= booking.end_date %></td>
             <td><%= booking.status.capitalize %></td>
             <td>
-              <%= link_to 'supprimer', booking_path(booking), method: :delete %>
+              <%= link_to 'Supprimer', booking_path(booking), method: :delete %>
             </td>
           </tr>
         <% end %>
@@ -54,8 +54,12 @@
             <td><%= booking.end_date %></td>
             <td><%= booking.status.capitalize %></td>
             <td>
-              <%= link_to 'accepter |', booking_accept_path(booking)%>
-              <%= link_to 'refuser', booking_refuse_path(booking) %>
+              <% if booking.status == 'en attente' || booking.status == 'pending' %>
+                <%= link_to 'Accepter |', booking_accept_path(booking)%>
+                <%= link_to 'Refuser', booking_refuse_path(booking) %>
+              <% else %>
+                <%= link_to 'Supprimer', booking_path(booking), method: :delete %>
+              <% end %>
             </td>
           </tr>
         <% end %>

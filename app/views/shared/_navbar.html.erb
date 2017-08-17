@@ -10,7 +10,7 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Poster un modèle", new_product_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Poster une annonce", new_product_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Tous les modèles", products_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
@@ -33,8 +33,13 @@
               <% end %>
             </li>
             <li>
+              <%= link_to my_products_path do %>
+                <i class="fa fa-female"></i>  <%= t(".profile", default: " Mes annonces") %>
+              <% end %>
+            </li>
+            <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-calendar-o"></i>  <%= t(".profile", default: " Déconnexion") %>
+                <i class="fa fa-user-times"></i>  <%= t(".profile", default: " Déconnexion") %>
               <% end %>
             </li>
           </ul>
