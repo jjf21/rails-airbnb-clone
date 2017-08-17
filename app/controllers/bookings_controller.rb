@@ -16,7 +16,8 @@ class BookingsController < ApplicationController
   end
 
   def create
-    if booking_params['start_date'] > booking_params['end_date']
+  
+    if booking_params['start_date'] > booking_params['end_date'] || booking_params['end_date'] < Time.now
       flash[:alert] = "Dates invalides"
       return redirect_to product_path(Product.find(booking_params[:product_id]))
     end 
