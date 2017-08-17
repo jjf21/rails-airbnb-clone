@@ -65,10 +65,10 @@
 
         <%= simple_form_for [@product, @booking] do |f|%>
           <%= f.input :description, as: :text, inline_label: 'Sujet de la reservation' %>
-          <%= f.input :start_date, as: :date %>
-          <%= f.input :end_date, as: :date %>
+          <%= f.date_field :start_date%>
+          <%= f.date_field :end_date%>
           <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
-          <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
+          <%= f.input :status, as: :hidden, input_html: { value: "En attente" } %>
           <%= f.submit %><br>
         <% end %>
 

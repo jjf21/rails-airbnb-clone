@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only:[:edit, :show, :update, :destroy]
+  before_action :set_booking, only:[:edit, :show, :update, :destroy, :accept, :cancelled]
 
 
   def show
@@ -16,11 +16,15 @@ class BookingsController < ApplicationController
   end
 
   def create
+    if booking_params['start_date'] > booking_params['end_date']
+      flash[:alert] = "Dates invalides"
+      return redirect_to product_path(Product.find(booking_params[:product_id]))
+    end 
     user = current_user
     user.bookings.create(booking_params)
     product = Product.find(params[:product_id])
     flash[:notice] = "Booking made with sucess"
-    redirect_to product_path(product)
+    redirect_to bookings_path
   end
 
   def edit
@@ -35,7 +39,19 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    flash[:notice] = "Booking deleted"
+    flash[:notice] = "Produit supprimer"
+    redirect_to bookings_path
+  end
+
+  def accept
+    @booking.status = 'accepté'
+    @booking.save
+    redirect_to bookings_path
+  end
+
+  def cancelled
+    @booking.status = 'refusé'
+    @booking.save
     redirect_to bookings_path
   end
 

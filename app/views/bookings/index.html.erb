@@ -1,24 +1,65 @@
-<h1> Booking effectué </h1>
-<% @bookings_done.each do |booking| %>
-  <h2><%= booking.description %></h2>
-  <p>Start date :<%= booking.start_date %></p>
-  <p>End date :<%= booking.end_date %></p>
-  <p>Status : <%= booking.status %></p>
-  <p>Personne qui reserve : <%= User.find(booking.user_id).email %></p>
-  <%= link_to 'Edit', edit_booking_path(booking) %> | 
-  <%= link_to 'Delete', booking_path(booking), method: :delete %>
-  <br>
-<% end %>
-
-<h1> Booking reçu </h1>
-<br>
-<% @bookings_receive.each do |booking| %>
-  <h2><%= booking.description %></h2>
-  <p>Start date :<%= booking.start_date %></p>
-  <p>End date :<%= booking.end_date %></p>
-  <p>Status : <%= booking.status %></p>
-  <p>Personne qui reserve : <%= User.find(booking.user_id).email %></p>
-  <%= link_to 'Edit', edit_booking_path(booking) %> | 
-  <%= link_to 'Delete', booking_path(booking), method: :delete %>
-  <br>
-<% end %>
+<div class='container'>
+  <div class="row">
+    <h3> Demande de location envoyé </h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Mannequin</th>
+          <th>Motif</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings_done.each_with_index do |booking, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= booking.product.first_name %> <%= booking.product.last_name %></td>
+            <td><%= booking.description %></td>
+            <td><%= booking.start_date %></td>
+            <td><%= booking.end_date %></td>
+            <td><%= booking.status.capitalize %></td>
+            <td>
+              <%= link_to 'supprimer', booking_path(booking), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class='row'>
+    <h3> Demande de location reçu </h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Mannequin</th>
+          <th>Motif</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings_receive.each_with_index do |booking, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= booking.product.first_name %> <%= booking.product.last_name %></td>
+            <td><%= booking.description %></td>
+            <td><%= booking.start_date %></td>
+            <td><%= booking.end_date %></td>
+            <td><%= booking.status.capitalize %></td>
+            <td>
+              <%= link_to 'accepter |', booking_accept_path(booking)%>
+              <%= link_to 'refuser', booking_refuse_path(booking) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
