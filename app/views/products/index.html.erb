@@ -2,28 +2,19 @@
   <div class="row">
     <div class="col-xs-12 col-md-6" >
       <div class='selector'>
-        <form class="form-inline" method='get' action='/'>
-              <select class="form-control">
-                <option selected>Ou ?</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-              <select class="form-control">
-                <option selected>Quel Prix ?</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <select class="form-control" name='speciality'>
-                <option selected>Spécialité ?</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-          <button type="submit" class="btn btn-danger">Rechercher</button>
+        <form class="form-inline" action='/products' method='get' id='form-index'>
+            <select class="form-control" id="sel1" name='skill_id' style='width: 200px;'>
+              <option value ='' >Spécialité ?</option>
+              <% @skills.each do |skill| %>
+                <option value ='<%= skill.id %>'><%= skill.name.capitalize %></option>
+              <% end %>s
+            </select>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input type="text" class="form-control" value='<%= @city %>' name='city' id='city' placeholder="Ville">
+              <input type="hidden" name='lng' id='lng' value='<%= @lng %>'>
+              <input type="hidden" name='lat' id ='lat' value='<%= @lat %>'>
+            </div>
+            <button type="submit" class="btn btn-danger">Voir nos models</button>
         </form>
 
       </div>
@@ -36,10 +27,10 @@
       </div>
     </div>
     <div class="col-xs-12 col-md-6">
-      <div class='sticky-content'>
+      <div class='sticky-content no-style'>
 
         <div class="col-md-12">
-            <div id="map" style="width: 100%; height: 600px;"></div>
+            <div id="map" style="width: 100%; height: 45em;"></div>
           </div>
         </div>
         <% content_for(:after_js) do %>

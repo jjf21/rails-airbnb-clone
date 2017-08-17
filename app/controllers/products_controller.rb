@@ -11,20 +11,31 @@ class ProductsController < ApplicationController
   end
 
   def index
-
+    @skills = Skill.all
+    @city = params[:city]
     lat = params[:lat]
+    @lat = params[:lat]
     lng = params[:lng]
+    @lng = params[:lng]
+    skill_id = params[:skill_id].to_i
 
-    if lat.blank? || lng.blank?
+    if lat.blank? || lng.blank? 
       @products = Product.where.not(latitude: nil, longitude: nil)
     else
-      @products = Product.near([lat, lng], 20)
+      @products = Product.near([lat, lng], 100)
+    end
+
+
+    if skill_id != 0
+
+      @products = @products.select{ |product| product.skills.first.id == skill_id }
     end
 
     @markers_hash = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
       marker.lng product.longitude
     end
+
 
   end
 
