@@ -9,5 +9,8 @@ class PagesController < ApplicationController
                 {icon: 'fa-female', title: 'Entretenez une relation professionnelle', content: content},
                 {icon: 'fa-venus-mars', title: 'Trouvez votre match', content: content}
                 ]
+  
+    @skills = Skill.all
+
   end
 end
