@@ -11,6 +11,7 @@ class Product < ApplicationRecord
 
   has_many :products_skills, dependent: :destroy
   has_many :skills, through: :products_skills
+  has_many :reviews, dependent: :destroy
 
 
   geocoded_by :address
