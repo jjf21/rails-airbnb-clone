@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   #     get 'users/bookings', to: 'bookings#index'
   #   end
   # end
-
   resources :bookings, only: [:index, :destroy, :edit, :update]
 
   get '/bookings/:id/validate', to: 'bookings#accept', as: 'booking_accept'
   get '/bookings/:id/cancelled', to: 'bookings#cancelled', as: 'booking_refuse'
 
   resources :products do
+    resources :reviews, only: [:new, :create]
     resources :bookings, only: [:new, :create]
   end
 

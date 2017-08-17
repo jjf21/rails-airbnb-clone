@@ -27,8 +27,47 @@
       </div>
 
       <div class='card'>
-        <div class='card-title'>Avis</div>
-        <p> <%= @product.description %> </p>
+        <div class='card-title'>
+          Avis
+          <button type="button" class="btn btn-danger" style='float:right;' data-toggle="modal" data-target="#myModal">Ajouter votre avis</button> 
+        </div>
+        
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ajouter un avis</h4>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for [@product, @review] do |f| %>
+                  <%= f.input :content %>
+                  <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+                  <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
+                  <%= f.input :rating %>
+                  <%= f.submit class:'btn btn-danger' %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+  
+
+        <% if @reviews.count > 0 %>
+          <% @reviews.each do |review| %>
+            <%= render 'shared/review', review: review %>
+          <% end %>
+        <% else %>
+          <p> Aucun avis pour le moment </p>
+        <% end %>
       </div>
 
       <div class='card'>
