@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index, :destroy, :edit, :update]
 
+  get '/bookings/:id/validate', to: 'bookings#accept', as: 'booking_accept'
+  get '/bookings/:id/cancelled', to: 'bookings#cancelled', as: 'booking_refuse'
+
   resources :products do
     resources :bookings, only: [:new, :create]
   end
