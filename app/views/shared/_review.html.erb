@@ -1,0 +1,13 @@
+<div class="message">
+  <img class="avatar-large" src="https://api.adorable.io/avatars/100/abott@adorable.png">
+  <div class="message-body">
+    <p><%= review.content %></p>
+  </div>
+  <div class="message-status">
+    <p class="price">
+      <% 5.times do |i|  %>
+        <%= review.rating - (i) > 0 ? '<i class="fa fa-star" aria-hidden="true"></i>'.html_safe : '<i class="fa fa-star-o" aria-hidden="true"></i>'.html_safe %>
+      <%end %>
+    </p>
+  </div>
+</div>

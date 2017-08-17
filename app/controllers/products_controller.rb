@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def show
+    @review = Review.new
+    @reviews = @product.reviews
     @booking = @product.bookings.new
     @marker_hash = Gmaps4rails.build_markers(@product) do |product, marker|
       marker.lat product.lat
