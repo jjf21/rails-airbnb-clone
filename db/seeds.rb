@@ -67,7 +67,6 @@ Skill.delete_all
                    description: Faker::Lorem.paragraph,
                    remote_photo_url: 'http://www.potins.net/wp-content/uploads/2014/03/1395241184-d0c1b1c9d4fc5b8b3818af35adfaadbb.jpg'
                    )
-
     b.products_skills.new(skill_id: Skill.all.sample.id)
 
     b.save!
@@ -84,12 +83,13 @@ Skill.delete_all
 
   a = Booking.new(
                   start_date: Time.now,
-                  end_date: Time.now,
-                  status: ['pending', 'cancelled', 'valided', 'finished'].sample,
+                  end_date: Time.now + 1,
+                  status: ['accepté', 'en attente', 'refusé'].sample,
                   description:Faker::Lorem.paragraph,
                   product_id:Product.all.sample.id,
                   user_id:User.all.sample.id
                   )
+
   a.save!
 
 end
