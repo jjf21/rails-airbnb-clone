@@ -46,7 +46,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    flash[:notice] = "Produit supprimer"
+    flash[:notice] = "Reservation supprimer"
     redirect_to bookings_path
   end
 

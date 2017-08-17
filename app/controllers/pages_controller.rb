@@ -13,4 +13,8 @@ class PagesController < ApplicationController
     @skills = Skill.all
 
   end
+
+  def product
+    @products = current_user.products
+  end
 end
