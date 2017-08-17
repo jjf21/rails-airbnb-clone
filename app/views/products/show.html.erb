@@ -45,7 +45,9 @@
               <div class="modal-body">
                 <%= simple_form_for [@product, @review] do |f| %>
                   <%= f.input :content %>
-                  <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+                  <% if !current_user.nil? %>
+                    <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+                  <% end %>
                   <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
                   <%= f.input :rating %>
                   <%= f.submit class:'btn btn-danger' %>
