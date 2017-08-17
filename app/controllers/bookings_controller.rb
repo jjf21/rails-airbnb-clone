@@ -16,16 +16,23 @@ class BookingsController < ApplicationController
   end
 
   def create
-    if booking_params['start_date'] > booking_params['end_date']
+    
+    if booking_params['start_date'] > booking_params['end_date'] || booking_params['end_date'].blank? ||booking_params['end_date'] < Time.now
       flash[:alert] = "Dates invalides"
       return redirect_to product_path(Product.find(booking_params[:product_id]))
     end 
+
     user = current_user
-    user.bookings.create(booking_params)
-    product = Product.find(params[:product_id])
-    flash[:notice] = "Booking made with sucess"
-    redirect_to bookings_path
+    @booking = user.bookings.new(booking_params)
+      if @booking.save
+        flash[:notice] = "La reservation s'est bien passé"
+        redirect_to bookings_path
+      else
+        flash[:alert] = "Erreur lors de la reservation "
+        return redirect_to product_path(Product.find(booking_params[:product_id]))
+      end
   end
+
 
   def edit
     @product = Product.find(@booking.product_id)

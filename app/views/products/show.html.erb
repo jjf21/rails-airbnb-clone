@@ -5,17 +5,17 @@
     <div class='col-xs-12 col-md-3 product-sidebar'>
       <div class='sticky-content'>
         <%= cl_image_tag @product.photo, class:'product-image'  %>
-        <a href='#'><div class='ancre-menu'>Description</div></a>
-        <a href='#'><div class='ancre-menu'>Photos</div></a>
-        <a href='#'><div class='ancre-menu'>Reviews</div></a>
-        <a href='#'><div class='ancre-menu'>Maps</div></a>
+        <a href='#description'><div class='ancre-menu'>Description</div></a>
+        <a href='#photos'><div class='ancre-menu'>Photos</div></a>
+        <a href='#reviews'><div class='ancre-menu'>Reviews</div></a>
+        <a href='#map-product'><div class='ancre-menu'>Maps</div></a>
       </div>
     </div>
 
     <!-- Main Content -->
     <div class='col-xs-12 col-md-6'>
       <div class='card'>
-        <div class='card-title'>Description</div>
+        <div class='card-title' id='description' >Description</div>
         <p> <%= @product.description %> </p>
         <div class='social-info'>
           <div class='social-info-elm'>Taille<br><span class='lg'><%= @product.height %></span></div>
@@ -32,7 +32,7 @@
       </div>
 
       <div class='card'>
-        <div class='card-title'>Photos</div>
+        <div class='card-title' id='photos'>Photos</div>
         <ul id="box-container">
           <li class="box">
             <a href="https://images.unsplash.com/photo-1494354205675-139c8101dfa5?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" class="swipebox" title="Fog">
@@ -53,7 +53,7 @@
       </div>
 
       <div class='card'>
-        <div class='card-title'>Localisation</div>
+        <div class='card-title' id='map-product'>Localisation</div>
         <%= render "products/map_box", marker_hash: @marker_hash %>
       </div>
     </div>
@@ -64,35 +64,17 @@
         <div class='card-title'>Reservation</div>
 
         <%= simple_form_for [@product, @booking] do |f|%>
-          <%= f.input :description, as: :text, inline_label: 'Sujet de la reservation' %>
-          <%= f.date_field :start_date%>
-          <%= f.date_field :end_date%>
+          <%= f.input :description, as: :string, label: 'Motif de la reservation' %>
+          <label class='text-center'>Du</label>
+          <%= f.date_field :start_date, class:'form-control'%>
+          <label class="text-center">Au</label>
+          <%= f.date_field :end_date, class:'form-control'%>
           <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
           <%= f.input :status, as: :hidden, input_html: { value: "En attente" } %>
-          <%= f.submit %><br>
+          <%= hidden_field_tag "action_name", action_name %>
+          <%= f.submit class:'btn btn-danger book-btn'%><br>
         <% end %>
 
-        <div class="form-group">
-          <label for="details">Sujet de la reservation</label>
-          <input type="text" id="details" class="form-control" >
-        </div>
-        <div class="form-group row">
-          <label for="start_date" class="col-sm-4 col-form-label">DU</label>
-          <div class="col-sm-8">
-            <input type="date" class="form-control" id="start_date">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="end_date" class="col-sm-4 col-form-label">Au</label>
-          <div class="col-sm-8">
-            <input type="date" class="form-control" id="end_date">
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-10">
-            <button type="submit" class="btn btn-danger book-btn">Envoyer ma demande</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
