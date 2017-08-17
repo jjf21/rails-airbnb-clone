@@ -71,6 +71,7 @@
           <%= f.date_field :end_date, class:'form-control'%>
           <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
           <%= f.input :status, as: :hidden, input_html: { value: "En attente" } %>
+          <%= hidden_field_tag "action_name", action_name %>
           <%= f.submit class:'btn btn-danger book-btn'%><br>
         <% end %>
 
