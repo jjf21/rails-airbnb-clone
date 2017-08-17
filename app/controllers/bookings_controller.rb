@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
         flash[:notice] = "La reservation s'est bien passé"
         redirect_to bookings_path
       else
-        flash[:alert] = "Erreur lors de la reservation"
+        flash[:alert] = "Erreur lors de la reservation "
         return redirect_to product_path(Product.find(booking_params[:product_id]))
       end
   end
