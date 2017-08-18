@@ -17,7 +17,12 @@
         <% @bookings_done.each_with_index do |booking, index| %>
           <tr>
             <th scope="row"><%= index + 1 %></th>
-            <td><%= booking.product.first_name %> <%= booking.product.last_name %></td>
+            <td>
+              <%= link_to product_path(booking.product) do %>
+                <%= booking.product.first_name %> 
+                <%= booking.product.last_name %>
+              <% end %>
+            </td>
             <td><%= booking.description %></td>
             <td><%= booking.start_date %></td>
             <td><%= booking.end_date %></td>
@@ -48,7 +53,12 @@
         <% @bookings_receive.each_with_index do |booking, index| %>
           <tr>
             <th scope="row"><%= index + 1 %></th>
-            <td><%= booking.product.first_name %> <%= booking.product.last_name %></td>
+            <td>
+              <%= link_to product_path(booking.product) do %>
+                <%= booking.product.first_name %> 
+                <%= booking.product.last_name %>
+              <% end %>
+            </td>
             <td><%= booking.description %></td>
             <td><%= booking.start_date %></td>
             <td><%= booking.end_date %></td>

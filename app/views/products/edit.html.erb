@@ -2,7 +2,8 @@
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :description %>
-  <%= f.input :date_of_birth %>
+  <%= f.label :name, 'Date de naissance' %><br>
+  <%= f.date_field :date_of_birth, class:'form-control'%>
   <%= f.input :price %>
   <%= f.input :phone_number %>
   <%= f.input :address %>
