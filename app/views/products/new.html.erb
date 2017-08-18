@@ -1,6 +1,6 @@
 <div class='container'>
   <h2>Ajout produit </h2>
-  <%= simple_form_for @product do |f|%>
+  <%= simple_form_for @product, html: {id: "form-index"} do |f|%>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :description %>
@@ -11,8 +11,8 @@
     <%= f.date_field :date_of_birth, class:'form-control' %>
     <%= f.input :price%>
     <%= f.input :phone_number %>
-    <%= f.input :address %>
-    <%= f.input :city %>
+    <%= f.input :address, input_html: {id: "city"}, label: 'Ville' %>
+    <%= f.input :city, as: :hidden, input_html: {id: "city_field"} %>
     <%= f.input :height %>
     <%= f.input :weight %>
     <%= f.input :shoes %>
@@ -21,3 +21,14 @@
     <%= f.submit %>
   <% end %> 
 </div>
+
+<%= content_for (:after_js) do %>
+    <script>
+        $( document ).ready(function() {
+            $('#form-index').submit(function(){
+                 var city = $('#city').val();
+                 $('#city_field').val(city);
+            });
+        });
+    </script>
+<% end %>

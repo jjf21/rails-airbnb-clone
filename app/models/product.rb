@@ -12,6 +12,7 @@ class Product < ApplicationRecord
   validates :date_of_birth, presence: true
   validates :photo, presence: true
   validates :user, presence: true
+  validates :address, presence: true
   require 'date'
 
   has_many :products_skills, dependent: :destroy
