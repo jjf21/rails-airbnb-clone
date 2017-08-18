@@ -1,7 +1,24 @@
-
-<h1><%= @user.email%></h1>
-<p>
-  <%= @user.first_name if !@user.first_name.nil?  
-      @user.last_name if !@user.last_name.nil? %>
-  
-</p>
+<div class='container'>
+  <div class='row'>
+      
+    <div class='col-xs-12 col-md-4'>
+      <% if current_user.avatar.url.blank? %>
+        <%= image_tag "http://www.jobsenboite.com/images/avatar/default-avatar.png", class:'avatar-profile' %>
+      <% else %>
+        <%= image_tag current_user.avatar, class:'avatar-profile'%>
+      <% end %>
+    </div>
+    <div class='col-xs-12 col-md-8'>
+      <div class='section-title'>
+        <h3>Vos informations personnelles</h3><br>
+      </div>
+      <p>
+        <b>First name:</b> <%= @user.first_name if !@user.first_name.nil? %><br>
+        <b>Last name:</b> <%= @user.last_name if !@user.last_name.nil? %> <br>
+        <b>Email:</b> <%= @user.email %> <br>
+        <b><%= link_to 'Modifier votre profil', edit_user_registration_path %></b>
+      </p>
+    </div>
+  </div>
+</div>
+<br><br>
