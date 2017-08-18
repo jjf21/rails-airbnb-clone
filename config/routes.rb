@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'profile', to: 'users#show'
-
   devise_for :users
 
   # resources :bookings, only: [:destroy, :edit] do
