@@ -54,7 +54,7 @@
             <td><%= booking.end_date %></td>
             <td><%= booking.status.capitalize %></td>
             <td>
-              <% if booking.status == 'en attente' || booking.status == 'pending' %>
+              <% if booking.status.upcase == 'EN ATTENTE'%>
                 <%= link_to 'Accepter |', booking_accept_path(booking)%>
                 <%= link_to 'Refuser', booking_refuse_path(booking) %>
               <% else %>

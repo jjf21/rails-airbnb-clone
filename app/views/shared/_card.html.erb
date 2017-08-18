@@ -1,7 +1,7 @@
 <div class='card-wrapper'>
   <div class='main-window' id='main-window'>
     <%= link_to product_path(product) do %>
-      <div class='user-image' style='background: url(<%= cl_image_path product.photo%>);'>
+      <div class='user-image' style='background: url(<%= cl_image_path product.photo if !product.photo.url.nil? %>);'>
         <div class='username'><%= "#{product.first_name} #{product.last_name}" %></div>
         <div class='price username'><%= "#{product.price} €" %></div>
       </div>

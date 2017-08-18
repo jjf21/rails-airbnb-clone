@@ -16,10 +16,15 @@ class ReviewsController < ApplicationController
       booked = true if booking.product == product && booking.status == 'accepté'
     end
 
-
-    if review.save && booked
-      flash[:notice] = "Ajout de l'avis"
-      redirect_to product_path(product)
+    
+    if booked
+      if review.save
+        flash[:notice] = "Ajout de l'avis"
+        redirect_to product_path(product)
+      else
+        flash[:alert] = "Vous ne pouvez pas ajouter d'avis"
+        redirect_to product_path(product)
+      end
     else
       flash[:alert] = "Vous ne pouvez pas ajouter d'avis"
       redirect_to product_path(product)
