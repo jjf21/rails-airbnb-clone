@@ -7,8 +7,8 @@ class ProductsController < ApplicationController
     @reviews = @product.reviews
     @booking = @product.bookings.new
     @marker_hash = Gmaps4rails.build_markers(@product) do |product, marker|
-      marker.lat product.lat
-      marker.lng product.lng
+      marker.lat product.latitude
+      marker.lng product.longitude
     end
   end
 
