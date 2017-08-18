@@ -1,5 +1,10 @@
 <div class="message">
-  <img class="avatar-large" src="https://api.adorable.io/avatars/100/abott@adorable.png">
+  <% if review.user.avatar.url.blank? %>
+    <%= image_tag "http://www.jobsenboite.com/images/avatar/default-avatar.png", class: "avatar-large" %>
+  <% else %>
+    <%= image_tag review.user.avatar, class: "avatar-large" %>
+  <% end %>
+
   <div class="message-body">
     <p><%= review.content %></p>
   </div>

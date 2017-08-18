@@ -6,7 +6,8 @@
     <%= f.input :description %>
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
-    <%= f.input :date_of_birth %>
+    <%= f.input :skills, collection: Skill.all %>
+    <%= f.date_field :date_of_birth %>
     <%= f.input :price %>
     <%= f.input :phone_number %>
     <%= f.input :address %>

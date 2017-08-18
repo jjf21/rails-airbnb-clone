@@ -29,8 +29,9 @@ class ProductsController < ApplicationController
 
 
     if skill_id != 0
-
-      @products = @products.select{ |product| product.skills.first.id == skill_id }
+      @products = @products.select do |product| 
+                    product.skills.first.id == skill_id if !product.skills.first.nil?
+                  end
     end
 
     @markers_hash = Gmaps4rails.build_markers(@products) do |product, marker|
@@ -47,7 +48,8 @@ class ProductsController < ApplicationController
 
   def create
     user = current_user
-    user.products.create(product_params)
+    a = user.products.create(product_params.except(:skills))
+    a.products_skills.new(skill_id: product_params[:skills].to_i).save
     redirect_to products_path
   end
 
@@ -92,7 +94,8 @@ class ProductsController < ApplicationController
                                     :photo,
                                     :photo_cache,
                                     :latitude,
-                                    :longitude
+                                    :longitude,
+                                    :skills
                                     )
   end
 

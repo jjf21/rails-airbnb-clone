@@ -49,7 +49,7 @@
                     <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
                   <% end %>
                   <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
-                  <%= f.input :rating %>
+                  <%= f.input :rating, collection: [0,1,2,3,4,5]%>
                   <%= f.submit class:'btn btn-danger' %>
                 <% end %>
               </div>
