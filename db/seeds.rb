@@ -14,8 +14,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'Erasing all the DB'
 
-puts 'Seeding your app'
-
+Review.delete_all
 Booking.delete_all
 ProductsSkill.delete_all
 Skill.delete_all
@@ -23,6 +22,7 @@ Product.delete_all
 User.delete_all
 Skill.delete_all
 
+puts 'Seeding your app'
 
 
   Skill.create!(name:'caractère')
@@ -82,15 +82,6 @@ Skill.delete_all
               )
   a.save!
 
-  a = Booking.new(
-                  start_date: Time.now,
-                  end_date: Time.now,
-                  status: ['pending', 'cancelled', 'valided', 'finished'].sample,
-                  description:Faker::Lorem.paragraph,
-                  product_id:Product.all.sample.id,
-                  user_id:User.all.sample.id
-                  )
-  a.save!
 
 end
 
